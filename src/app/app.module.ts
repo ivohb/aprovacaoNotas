@@ -9,6 +9,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UsuarioService } from '../services/domain/usuario.service';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
+import { AuthService } from '../services/auth.servece';
+import { StorageService } from '../services/storage.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
     //ele será usado em muitas páginas da aplicação. Assim uma instancia unica
     //será criada e utilizada em qualquer parte que recesar.
     UsuarioService,
-    ErrorInterceptorProvider
+    ErrorInterceptorProvider,
+    AuthService,
+    StorageService
   ]
 })
 export class AppModule {}

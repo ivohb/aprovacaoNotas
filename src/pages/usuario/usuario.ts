@@ -28,7 +28,7 @@ export class UsuarioPage {
         response => { //função executa na resposta, se tudo ok
           this.usuarios = response; //captura os usuários
         },
-        error => {}); //função executada se der erro (nada faz)
+        error => {}); //função executada se der erro (nada faz por enquanto)
   }
 
 

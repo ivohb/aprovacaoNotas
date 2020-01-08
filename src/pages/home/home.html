@@ -9,12 +9,12 @@
 
     <ion-item>
       <ion-label stacked>Código:</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input [(ngModel)]="creds.codigo" name="codigo" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Senha:</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input [(ngModel)]="creds.senha" name="senha" type="password"></ion-input>
     </ion-item>
 
     <button ion-button block (click)="login()">Entrar</button>

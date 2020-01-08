@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage, MenuController } from 'ionic-angular';
+import { LoginDto } from '../../models/login.dto';
+import { AuthService } from '../../services/auth.servece';
 
 @IonicPage()
 @Component({
@@ -12,9 +14,18 @@ export class HomePage {
   //todo atributo de classe ou objeto de construtor
   //deve ser referenciado precedido por this
 
-  constructor(public navCtrl: NavController, public menu: MenuController) {
+  creds : LoginDto = {
+    codigo: "",
+    senha: ""
+  };
+
+  constructor(
+    public navCtrl: NavController, 
+    public menu: MenuController,
+    public auth: AuthService) {
 
   }
+
 
   //ao entrar na página, desabilita menu
   //como a página home é a página de login, não deve ter menu
@@ -28,8 +39,14 @@ export class HomePage {
   }
 
   public login() {
-       //setRoot abre nova página sem empilhar
-    this.navCtrl.setRoot("UsuarioPage");
+    this.auth.autenticacao(this.creds)
+      .subscribe(response => {
+        this.auth.successfulLogin(response.headers.get('Authorization'));
+        this.navCtrl.setRoot("UsuarioPage"); //setRoot abre nova página sem empilhar
+      },
+      error => {}); 
+       
+    
   }
 
   //método para abrir a página de alteração de senha
