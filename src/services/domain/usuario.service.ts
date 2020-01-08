@@ -15,6 +15,6 @@ export class UsuarioService {
 
     findAll() : Observable<UsuarioDto[]> {
         //chaada do método get da API sem parâmetros
-        return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuario`);
+        return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuarios`);
     }
 }

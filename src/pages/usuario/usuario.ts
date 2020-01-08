@@ -28,10 +28,7 @@ export class UsuarioPage {
         response => { //função executa na resposta, se tudo ok
           this.usuarios = response; //captura os usuários
         },
-        error => { //função executada na resposta, no caso de erro
-          console.log(error); //exibe o erro no console
-        }
-      );
+        error => {}); //função executada se der erro (nada faz)
   }
 
 

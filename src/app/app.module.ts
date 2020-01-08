@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UsuarioService } from '../services/domain/usuario.service';
+import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UsuarioService } from '../services/domain/usuario.service';
     //coloquei a instancia desse serviço aqui no módulo principal porque
     //ele será usado em muitas páginas da aplicação. Assim uma instancia unica
     //será criada e utilizada em qualquer parte que recesar.
-    UsuarioService 
+    UsuarioService,
+    ErrorInterceptorProvider
   ]
 })
 export class AppModule {}
