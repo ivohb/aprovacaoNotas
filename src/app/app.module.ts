@@ -11,6 +11,7 @@ import { UsuarioService } from '../services/domain/usuario.service';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthService } from '../services/auth.servece';
 import { StorageService } from '../services/storage.service';
+import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -25,14 +26,17 @@ import { StorageService } from '../services/storage.service';
   entryComponents: [
     MyApp
   ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+
     //coloquei a instancia desse serviço aqui no módulo principal porque
     //ele será usado em muitas páginas da aplicação. Assim uma instancia unica
     //será criada e utilizada em qualquer parte que recesar.
+    //os recursos abaixo são executados na ordem que são declarados
+    providers: [
+    StatusBar,
+    SplashScreen,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
     UsuarioService,
+    AuthInterceptorProvider,
     ErrorInterceptorProvider,
     AuthService,
     StorageService

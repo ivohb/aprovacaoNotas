@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 //import { Observable } from "rxjs/Observable"; contém erro, usar a importação abaixo
 import { Observable } from "rxjs/Rx";
 import { UsuarioDto } from "../../models/usuario.dto";
@@ -22,13 +22,8 @@ export class UsuarioService {
     }
 
     findByCodigo(codigo: string) : Observable<UsuarioDto> {
-
-        let token = this.storage.getLocalUser().token;
-        let authHeader = new HttpHeaders({"Authorization":"Bearen "+token});
-
         return this.http.get<UsuarioDto>(
-            `${API_CONFIG.apiUrl}/usuario/codigo?codigo=${codigo}`,
-            {'headers':authHeader});
+            `${API_CONFIG.apiUrl}/usuario/codigo?codigo=${codigo}`);
     }
 
     getImageFromBucket(id : string) : Observable<any> {
