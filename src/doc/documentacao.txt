@@ -9,3 +9,7 @@ https://github.com/acenelio/curso-spring-ionic-frontend/
 UI Components angular - https://ionicframework.com/docs/components/#thumbnail-list
 
 endereço das imagens - https://aprovacao-de-notas.s3-sa-east-1.amazonaws.com
+
+comandos fundamentais git:
+
+https://woliveiras.com.br/posts/comandos-mais-utilizados-no-git/#Trocandodebranch
