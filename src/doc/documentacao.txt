@@ -1,0 +1,11 @@
+
+ionic cli - https://ionicframework.com/docs/cli
+ionic components - https://ionicframework.com/docs/components
+ionicicon - https://ionicons.com/
+Ciclo de vida - https://ionicframework.com/blog/navigating-lifecycle-events/
+
+https://github.com/acenelio/curso-spring-ionic-frontend/
+
+UI Components angular - https://ionicframework.com/docs/components/#thumbnail-list
+
+endereço das imagens - https://aprovacao-de-notas.s3-sa-east-1.amazonaws.com
