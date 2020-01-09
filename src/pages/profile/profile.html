@@ -9,5 +9,13 @@
 </ion-header>
 
 <ion-content padding>
-  {{codigo}} <!--mostrar o valor do codigo por meio de uma interpolação -->
+
+  <h2 text-center>{{usuario?.nome}}</h2>
+  <p text-center>{{usuario?.cpf}}</p>
+
+  <ion-avatar>
+    <img class="circle" [src]="usuario?.imageUrl || 'assets/imgs/avatar-blank.png' ">
+  </ion-avatar>
+
+
 </ion-content>
