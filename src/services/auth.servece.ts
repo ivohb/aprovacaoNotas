@@ -4,9 +4,15 @@ import { LoginDto } from "../models/login.dto";
 import { API_CONFIG } from "../config/api.config";
 import { StorageService } from "./storage.service";
 import { LocalUser } from "../models/local_user";
+// npm install @auth0/angular-jwt
+import { JwtHelperService  } from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthService {
+
+    //será usado para extrair o codigo do usuario a partir do token
+
+    jwtHelper: JwtHelperService  = new JwtHelperService ();
 
     constructor(
         public http: HttpClient,
@@ -26,7 +32,8 @@ export class AuthService {
     successfulLogin(authorizationValue : string) {
         let tok = authorizationValue.substring(7); //obtem token sem o prefixo Bearer
         let user : LocalUser = { //cria obj user com token
-            token: tok
+            token: tok,
+            codigo: this.jwtHelper.decodeToken(tok).sub
         };
         this.storage.setLocalUser(user); //armazena no localStorage
     }
