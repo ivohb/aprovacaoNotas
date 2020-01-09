@@ -21,17 +21,28 @@ export class ProfilePage {
     public usuarioService: UsuarioService) {
   }
 
+    //se localUser não nulo e contiver a propriedade codigo
+    //faz uma busca do usuário pelo codigo.
+    //Se ocorrer erro de autorização ou na busca do localStorage,
+    //redireciona para a página home
+
   ionViewDidLoad() {
     let localUser = this.storage.getLocalUser();
-    //se localUser não nulo e contiver a propriedade codigo
     if (localUser && localUser.codigo) {
       this.usuarioService.findByCodigo(localUser.codigo)
         .subscribe(response => {
           this.usuario = response;
           this.getImageIfExists();
         },
-        error => {});
+        error => {
+          if (error.status == 403) {
+            this.navCtrl.setRoot('HomePage');
+          }
+        });
     }
+    else {
+      this.navCtrl.setRoot('HomePage');
+    }    
   }
 
   getImageIfExists() {

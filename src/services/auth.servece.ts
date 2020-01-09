@@ -29,6 +29,16 @@ export class AuthService {
             });
     }
 
+    refreshToken() {
+        return this.http.post(
+            `${API_CONFIG.apiUrl}/auth/refresh_token`, 
+            {}, //não tem parâmetros
+            {
+                observe: 'response',
+                responseType: 'text'
+            });
+    }
+
     successfulLogin(authorizationValue : string) {
         let tok = authorizationValue.substring(7); //obtem token sem o prefixo Bearer
         let user : LocalUser = { //cria obj user com token

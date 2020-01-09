@@ -38,6 +38,17 @@ export class HomePage {
     this.menu.swipeEnable(true);
   }
 
+  //Se o token ainda estiver ativo, vai direto para
+  //a página inicial, sem passar pela tela de login
+  ionViewDidEnter() {
+    this.auth.refreshToken()
+      .subscribe(response => {
+        this.auth.successfulLogin(response.headers.get('Authorization'));
+        this.navCtrl.setRoot('UsuarioPage');
+      },
+      error => {});  
+  }
+
   public login() {
     this.auth.autenticacao(this.creds)
       .subscribe(response => {
