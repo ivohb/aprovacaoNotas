@@ -11,23 +11,32 @@
       definido no controler e a propriedade name troca-se por formControlName -->
 
   <form [formGroup]="formGroup" (ngSubmit)="enviar(); $event.preventDefault()">
-    
+   
     <ion-item>
-      <ion-label stacked>Código:</ion-label>
-      <ion-input formControlName="codigo" type="text"></ion-input>
+      <ion-label stacked>Código*</ion-label>
+      <ion-select formControlName="codigo">
+        <!--Exibe o campo já com o primeiro código da lista
+        <ion-option *ngFor="let obj of usuarios; first as f" [value]="obj.codigo" [selected]="f">{{obj.nome}}</ion-option>
+        -->
+        <ion-option *ngFor="let obj of usuarios" 
+          [value]="obj.codigo">{{obj.nome}}
+        </ion-option>
+      </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>CPF:</ion-label>
       <ion-input formControlName="cpf" type="text"></ion-input>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.cpf.dirty && formGroup.controls.cpf.errors" margin-left>Valor inválido</p>
 
     <ion-item>
       <ion-label stacked>Email:</ion-label>
       <ion-input formControlName="email" type="text"></ion-input>
     </ion-item>
+    <p class="danger" *ngIf="formGroup.controls.email.dirty && formGroup.controls.email.errors" margin-left>Valor inválido</p>
 
-    <button ion-button block type="submit">Enviar</button>
+    <button ion-button block type="submit" [disabled]="formGroup.invalid">Enviar</button>
 
   </form>
 </ion-content>

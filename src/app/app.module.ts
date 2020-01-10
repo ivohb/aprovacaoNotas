@@ -27,17 +27,17 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
     MyApp
   ],
 
-    //coloquei a instancia desse serviço aqui no módulo principal porque
-    //ele será usado em muitas páginas da aplicação. Assim uma instancia unica
-    //será criada e utilizada em qualquer parte que recesar.
-    //os recursos abaixo são executados na ordem que são declarados
+    //todo recurso declarado aqui no módulo principal tem
+    //escopo global, ou sejam não precisam ser declarados
+    //nos providers dos sub módulos que irão utiliza-los
+    
     providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UsuarioService,
-    AuthInterceptorProvider,
-    ErrorInterceptorProvider,
+    AuthInterceptorProvider, //devido a ordem das declarações, o AlthInterceptador
+    ErrorInterceptorProvider, //será executado antes do ErrorInterceptador 
     AuthService,
     StorageService
   ]

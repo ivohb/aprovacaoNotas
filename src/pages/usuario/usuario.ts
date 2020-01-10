@@ -15,6 +15,8 @@ export class UsuarioPage {
   
   usuarios : UsuarioDto[]; //declaração de uma coleção de usuários
 
+  //para criar uma instãncia de um recurso qualquer,
+  //basta incluír o recurso no construtor da classe.
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,

@@ -21,6 +21,11 @@ export class UsuarioService {
         return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuario`);
     }
 
+    popup() : Observable<UsuarioDto[]> {
+        //chaada do método get da API sem parâmetros
+        return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuario/popup`);
+    }
+
     findByCodigo(codigo: string) : Observable<UsuarioDto> {
         return this.http.get<UsuarioDto>(
             `${API_CONFIG.apiUrl}/usuario/codigo?codigo=${codigo}`);

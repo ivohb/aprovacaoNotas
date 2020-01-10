@@ -8,6 +8,6 @@ import { EsquecisenhaPage } from './esquecisenha';
   ],
   imports: [
     IonicPageModule.forChild(EsquecisenhaPage),
-  ],
+  ]
 })
 export class EsquecisenhaPageModule {}

@@ -55,7 +55,10 @@ export class HomePage {
         this.auth.successfulLogin(response.headers.get('Authorization'));
         this.navCtrl.setRoot("UsuarioPage"); //setRoot abre nova página sem empilhar
       },
-      error => {}); 
+      error => {
+        console.log("Back end fora do ar");
+        this.navCtrl.setRoot("UsuarioPage");
+      }); 
        
     
   }
