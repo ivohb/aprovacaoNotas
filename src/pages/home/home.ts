@@ -61,9 +61,9 @@ export class HomePage {
   }
 
   //método para abrir a página de alteração de senha
-  public senha() {
+  public esqueciSenha() {
     //push empilha as páginas e cria botão voltar
-    this.navCtrl.push("SenhaPage");
+    this.navCtrl.push("EsquecisenhaPage");
   }
 
 }

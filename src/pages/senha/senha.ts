@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SenhaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SenhaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  formGroup: FormGroup;
+  
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public formBuilder: FormBuilder) {
+      this.formGroup = this.formBuilder.group({
+        novaSenha: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
+        confirmaSenha: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]]
+      });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SenhaPage');
+    //executado quando a página é carregada
   }
 
+  alterarSenha() {
+    console.log("alterarsenha");
+  }
+  
 }
