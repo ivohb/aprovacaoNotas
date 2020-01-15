@@ -13,6 +13,7 @@ import { API_CONFIG } from '../../config/api.config';
 export class MenuPage {
  
   bucketUrl : string = API_CONFIG.imgUrl;
+  imgStatUrl: string = API_CONFIG.imgStatUrl;
   
   processos: ProcessoDto[];
 
@@ -33,4 +34,8 @@ export class MenuPage {
 
   }
 
+  abrePagina(pagina: string) {
+    console.log("Pagina: "+pagina);
+    this.navCtrl.push(pagina);
+  }
 }

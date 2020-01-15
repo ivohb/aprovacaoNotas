@@ -30,6 +30,9 @@
     </ion-item>
     <p class="danger" *ngIf="formGroup.controls.cpf.dirty && formGroup.controls.cpf.errors" margin-left>Valor inválido</p>
 
+    <!-- .dirty : se o campo já foi mexido-->
+    <!-- .errors : se alguma validação falhar-->
+
     <ion-item>
       <ion-label stacked>Email:</ion-label>
       <ion-input formControlName="email" type="text"></ion-input>

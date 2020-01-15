@@ -48,10 +48,9 @@ export class EsquecisenhaPage {
         }); 
   }
   
+  
   enviar() {
     console.log(this.formGroup.value);
-    this.showSucesso('Operação efetuada com sucesso');
-    
     this.authService.forgot(this.formGroup.value)
     .subscribe(response => {
       this.showSucesso('Operação efetuada com sucesso');

@@ -7,21 +7,26 @@
 
 <ion-content padding>
   
-  <p>Alteração de senha</p>
-
-  <form (ngSubmit)="alterarSenha(); $event.preventDefault()">
+  <form [formGroup]="formGroup" (ngSubmit)="enviar(); $event.preventDefault()">
     
     <ion-item>
-      <ion-label stacked>Senha atual:</ion-label>
-      <ion-input name="senha-atual" type="password"></ion-input>
+      <ion-label stacked>Nova senha:</ion-label>
+      <ion-input formControlName="novaSenha" type="password"></ion-input>
     </ion-item>
-
+    <p class="danger" 
+       *ngIf="formGroup.controls.novaSenha.dirty && formGroup.controls.novaSenha.errors" 
+       margin-left>Valor inválido</p>
+    
     <ion-item>
-      <ion-label stacked>Senha nova:</ion-label>
-      <ion-input name="senha-nova" type="password"></ion-input>
+      <ion-label stacked>Confirma senha:</ion-label>
+      <ion-input formControlName="confirmaSenha" type="password"></ion-input>
     </ion-item>
-
-    <button ion-button block type="submit">Alterar</button>
+    <p class="danger" 
+       *ngIf="formGroup.controls.confirmaSenha.dirty && formGroup.controls.confirmaSenha.errors" 
+       margin-left>Valor inválido</p>
+  
+    <button ion-button block type="submit" 
+           [disabled]="formGroup.invalid">Enviar</button>
 
   </form>
 

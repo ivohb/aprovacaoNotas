@@ -15,9 +15,9 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let proc of processos" >
+    <button ion-item *ngFor="let proc of processos" (click)="abrePagina(proc.pagina)">
       <ion-thumbnail item-start>
-        <img class="imagem" src="{{bucketUrl}}/{{proc.imagem}}">
+        <img class="imagem" src="{{imgStatUrl}}/{{proc.imagem}}">
       </ion-thumbnail>
       <h2 class="titulo"> {{ proc.nome }} </h2>
     </button>

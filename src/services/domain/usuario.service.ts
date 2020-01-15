@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Rx";
 import { UsuarioDto } from "../../models/usuario.dto";
 import { API_CONFIG } from "../../config/api.config";
 import { StorageService } from "../storage.service";
+import { SenhaDto } from "../../models/senha.dto";
 
 //classe responsável pela comunicação com o back end
 
@@ -38,6 +39,17 @@ export class UsuarioService {
 
     insert(obj : UsuarioDto) {
         return this.http.post(
+            `${API_CONFIG.apiUrl}/usuario`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
+
+    updateSenha(obj : SenhaDto) {
+        return this.http.patch(
             `${API_CONFIG.apiUrl}/usuario`, 
             obj,
             { 
