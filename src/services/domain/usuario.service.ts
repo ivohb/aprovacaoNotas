@@ -36,4 +36,15 @@ export class UsuarioService {
         return this.http.get(url, {responseType : 'blob'});
     }
 
+    insert(obj : UsuarioDto) {
+        return this.http.post(
+            `${API_CONFIG.apiUrl}/usuario`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
+
 }

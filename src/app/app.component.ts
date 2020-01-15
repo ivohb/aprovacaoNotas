@@ -25,7 +25,7 @@ export class MyApp {
     //itens do menu
     this.pages = [
       { title: 'Profile', component: 'ProfilePage' },
-      { title: 'Usuário', component: 'UsuarioPage' },
+      { title: 'Menu', component: 'MenuPage' },
       { title: 'Logout', component: '' }
     ];
 

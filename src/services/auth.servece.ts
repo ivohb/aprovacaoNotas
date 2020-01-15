@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { LoginDto } from "../models/login.dto";
+import { ForgotDto } from "../models/forgot.dto";
 import { API_CONFIG } from "../config/api.config";
 import { StorageService } from "./storage.service";
 import { LocalUser } from "../models/local_user";
@@ -29,6 +30,17 @@ export class AuthService {
             });
     }
 
+    forgot(obj : ForgotDto) {
+        return this.http.post(
+            `${API_CONFIG.apiUrl}auth//forgot`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
+
     refreshToken() {
         return this.http.post(
             `${API_CONFIG.apiUrl}/auth/refresh_token`, 
@@ -39,11 +51,12 @@ export class AuthService {
             });
     }
 
-    successfulLogin(authorizationValue : string) {
-        let tok = authorizationValue.substring(7); //obtem token sem o prefixo Bearer
+    successfulLogin(token : string, profile : string) {
+        let tok = token.substring(7); //obtem token sem o prefixo Bearer
         let user : LocalUser = { //cria obj user com token
             token: tok,
-            codigo: this.jwtHelper.decodeToken(tok).sub
+            codigo: this.jwtHelper.decodeToken(tok).sub,
+            perfil: profile
         };
         this.storage.setLocalUser(user); //armazena no localStorage
     }

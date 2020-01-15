@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuarioService } from '../../services/domain/usuario.service';
 import { UsuarioDto } from '../../models/usuario.dto';
+import { AuthService } from '../../services/auth.servece';
 
 @IonicPage()
 @Component({
@@ -20,9 +21,12 @@ export class EsquecisenhaPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public usuarioService: UsuarioService,
-    public formBuilder: FormBuilder) {
-      this.formGroup = this.formBuilder.group({
+    public authService: AuthService,
+    public formBuilder: FormBuilder,
+    public alertCtrl: AlertController) {
+
         //valor inicial e as validações sintáticas
+      this.formGroup = this.formBuilder.group({       
         codigo: ['', [Validators.required, Validators.minLength(3)]],
         cpf:    ['', [Validators.required, Validators.minLength(10)]],
         email:  ['', [Validators.required, Validators.email, Validators.maxLength(50)]]
@@ -45,7 +49,32 @@ export class EsquecisenhaPage {
   }
   
   enviar() {
-    console.log("Enviar dados");
+    console.log(this.formGroup.value);
+    this.showSucesso('Operação efetuada com sucesso');
+    
+    this.authService.forgot(this.formGroup.value)
+    .subscribe(response => {
+      this.showSucesso('Operação efetuada com sucesso');
+    },
+    error => {});
   }
+
+  showSucesso(msg: string) {
+    let alert = this.alertCtrl.create({
+      title: 'Sucesso!',
+      message: msg,
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            this.navCtrl.pop(); //desempilha a página esquecisenha
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
 
 }

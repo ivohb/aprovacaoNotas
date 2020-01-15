@@ -12,6 +12,7 @@ import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthService } from '../services/auth.servece';
 import { StorageService } from '../services/storage.service';
 import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
+import { MenuService } from '../services/domain/menu.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
     AuthInterceptorProvider, //devido a ordem das declarações, o AlthInterceptador
     ErrorInterceptorProvider, //será executado antes do ErrorInterceptador 
     AuthService,
-    StorageService
+    StorageService,
+    MenuService
   ]
 })
 export class AppModule {}

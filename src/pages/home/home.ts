@@ -21,7 +21,7 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController, 
-    public menu: MenuController,
+    public menuCtrl: MenuController,
     public auth: AuthService) {
 
   }
@@ -30,12 +30,12 @@ export class HomePage {
   //ao entrar na página, desabilita menu
   //como a página home é a página de login, não deve ter menu
   ionViewWillEnter() {
-    this.menu.swipeEnable(false);
+    this.menuCtrl.swipeEnable(false);
     }
   
   //ao sair da página, habilita menu
   ionViewDidLeave() {
-    this.menu.swipeEnable(true);
+    this.menuCtrl.swipeEnable(true);
   }
 
   //Se o token ainda estiver ativo, vai direto para
@@ -43,8 +43,9 @@ export class HomePage {
   ionViewDidEnter() {
     this.auth.refreshToken()
       .subscribe(response => {
-        this.auth.successfulLogin(response.headers.get('Authorization'));
-        this.navCtrl.setRoot('UsuarioPage');
+        this.auth.successfulLogin(
+          response.headers.get('Authorization'), response.headers.get('Profile'));
+        this.navCtrl.setRoot('MenuPage');
       },
       error => {});  
   }
@@ -52,12 +53,12 @@ export class HomePage {
   public login() {
     this.auth.autenticacao(this.creds)
       .subscribe(response => {
-        this.auth.successfulLogin(response.headers.get('Authorization'));
-        this.navCtrl.setRoot("UsuarioPage"); //setRoot abre nova página sem empilhar
+        this.auth.successfulLogin(
+          response.headers.get('Authorization'), response.headers.get('Profile'));
+        this.navCtrl.setRoot("MenuPage"); //setRoot abre nova página sem empilhar
       },
       error => {
         console.log("Back end fora do ar");
-        this.navCtrl.setRoot("UsuarioPage");
       }); 
        
     
