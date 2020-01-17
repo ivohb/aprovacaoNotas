@@ -1,0 +1,52 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Usuário</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  
+  <form [formGroup]="fg" (ngSubmit)="enviar(); $event.preventDefault()">
+
+    <ion-item>
+      <ion-label stacked>Id:</ion-label>
+      <ion-input disabled="true" formControlName="id" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item >
+      <ion-label stacked>Código:</ion-label>
+      <ion-input disabled="true" formControlName="codigo" type="disabled"  ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Nome:</ion-label>
+      <ion-input formControlName="nome" type="text"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label stacked>CPF:</ion-label>
+      <ion-input formControlName="cpf" type="text"></ion-input>
+    </ion-item>
+    <p class="erro" *ngIf="fg.controls.cpf.dirty && fg.controls.cpf.errors"  margin-left>Valor inválido</p>
+
+    <ion-item>
+      <ion-label stacked>Email:</ion-label>
+      <ion-input formControlName="email" type="text"></ion-input>
+    </ion-item>
+    <p class="erro" *ngIf="fg.controls.email.dirty && fg.controls.email.errors"  margin-left>Valor inválido</p>
+
+    <ion-item>
+      <ion-label stacked>Sexo:</ion-label>
+      <ion-select formControlName="sexo">
+        <ion-option value='F'>Feminino</ion-option>
+        <ion-option value='M'>Masculino</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <button ion-button block type="submit" [disabled]="fg.invalid">Enviar</button>
+    <button ion-button block type="submit" [disabled]="fg.invalid">Enviar</button>
+
+  </form>
+
+</ion-content>

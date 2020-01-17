@@ -13,7 +13,6 @@ export class SenhaPage {
 
   formGroup: FormGroup;
   
-
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,

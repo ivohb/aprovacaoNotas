@@ -6,10 +6,10 @@ import { API_CONFIG } from '../../config/api.config';
 
 @IonicPage()
 @Component({
-  selector: 'page-usuario',
-  templateUrl: 'usuario.html',
+  selector: 'page-usuarios',
+  templateUrl: 'usuarios.html',
 })
-export class UsuarioPage {
+export class UsuariosPage {
 
   bucketUrl : string = API_CONFIG.imgUrl;
   
@@ -33,5 +33,10 @@ export class UsuarioPage {
         error => {}); //função executada se der erro (nada faz por enquanto)
   }
 
+  showUser(id: string) {
+  //abre a pagina de usuário, passando o id do mesmo
+  //nome do parametro : valor do parametro
+  this.navCtrl.push('UsuarioPage' , {user_id: id});    
+  }
 
 }

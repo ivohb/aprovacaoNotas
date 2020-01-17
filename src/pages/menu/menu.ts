@@ -34,8 +34,12 @@ export class MenuPage {
 
   }
 
-  abrePagina(pagina: string) {
+  showPage(pagina: string) {
     console.log("Pagina: "+pagina);
-    this.navCtrl.push(pagina);
+    if (pagina == 'SenhaPage') {
+      this.navCtrl.push(pagina);
+    } else {
+      this.navCtrl.setRoot(pagina);
+    }    
   }
 }

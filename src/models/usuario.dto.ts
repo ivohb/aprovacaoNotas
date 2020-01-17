@@ -1,9 +1,10 @@
 export interface UsuarioDto {
     id : string;
     codigo : string;
-    senha : string;
     nome : string;
+    senha : string;
     email : string;
     cpf : string;
+    sexo : string;
     imageUrl? : string; //(?) indica campo opcional - não vem do back end
 }

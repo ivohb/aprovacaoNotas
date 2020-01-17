@@ -17,6 +17,11 @@ export class UsuarioService {
         public storage: StorageService) {
     }
 
+    findById(id: string) : Observable<UsuarioDto> {
+        return this.http.get<UsuarioDto>(
+            `${API_CONFIG.apiUrl}/usuario/${id}`);
+    }
+
     findAll() : Observable<UsuarioDto[]> {
         //chaada do método get da API sem parâmetros
         return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuario`);
@@ -41,6 +46,28 @@ export class UsuarioService {
         return this.http.post(
             `${API_CONFIG.apiUrl}/usuario`, 
             obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
+
+    update(obj : UsuarioDto) {
+        console.log(obj.id);
+        return this.http.put(
+            `${API_CONFIG.apiUrl}/usuario/${obj.id}`, 
+            obj,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
+
+    delete(id : string) {
+        return this.http.delete(
+            `${API_CONFIG.apiUrl}/usuario/${id}`,
             { 
                 observe: 'response', 
                 responseType: 'text'
