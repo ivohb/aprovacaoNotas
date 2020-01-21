@@ -7,7 +7,7 @@
 
 <ion-content padding>
   
-  <form [formGroup]="fg" (ngSubmit)="enviar(); $event.preventDefault()">
+  <form [formGroup]="fg" >
 
     <ion-item>
       <ion-label stacked>Id:</ion-label>
@@ -16,7 +16,7 @@
 
     <ion-item >
       <ion-label stacked>Código:</ion-label>
-      <ion-input disabled="true" formControlName="codigo" type="disabled"  ></ion-input>
+      <ion-input disabled ="{{desabilita}}" formControlName="codigo" type="disabled"  ></ion-input>
     </ion-item>
 
     <ion-item>
@@ -44,8 +44,8 @@
       </ion-select>
     </ion-item>
 
-    <button ion-button block type="submit" [disabled]="fg.invalid">Enviar</button>
-    <button ion-button block type="submit" [disabled]="fg.invalid">Enviar</button>
+    <button ion-button block (click)="save()" [disabled]="fg.invalid">Salvar</button>
+    <button ion-button block (click)="delete()" class="erro" hidden="{{hidden}}">Excluir</button>
 
   </form>
 

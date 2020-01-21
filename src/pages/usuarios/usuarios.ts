@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UsuarioService } from '../../services/domain/usuario.service';
 import { UsuarioDto } from '../../models/usuario.dto';
 import { API_CONFIG } from '../../config/api.config';
+import { AppModule } from '../../app/app.module';
 
 @IonicPage()
 @Component({
@@ -12,7 +13,6 @@ import { API_CONFIG } from '../../config/api.config';
 export class UsuariosPage {
 
   bucketUrl : string = API_CONFIG.imgUrl;
-  
   usuarios : UsuarioDto[]; //declaração de uma coleção de usuários
 
   //para criar uma instãncia de um recurso qualquer,
@@ -36,7 +36,13 @@ export class UsuariosPage {
   showUser(id: string) {
   //abre a pagina de usuário, passando o id do mesmo
   //nome do parametro : valor do parametro
-  this.navCtrl.push('UsuarioPage' , {user_id: id});    
+    this.navCtrl.push('UsuarioPage' , {user_id: id});    
+  }
+
+  ionViewWillEnter() {
+    if (AppModule.getAtualizou() == 'S') {
+      this.ionViewDidLoad();        
+    }
   }
 
 }

@@ -31,7 +31,7 @@ export class HomePage {
   //como a página home é a página de login, não deve ter menu
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false);
-    }
+  }
   
   //ao sair da página, habilita menu
   ionViewDidLeave() {
@@ -49,7 +49,7 @@ export class HomePage {
       },
       error => {});  
   }
-
+ 
   public login() {
     this.auth.autenticacao(this.creds)
       .subscribe(response => {

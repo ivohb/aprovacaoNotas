@@ -44,4 +44,15 @@ import { MenuService } from '../services/domain/menu.service';
     MenuService
   ]
 })
-export class AppModule {}
+export class AppModule {
+  private static atualizou: string = "N";
+
+  static getAtualizou(){
+    return this.atualizou;
+  }
+  
+  static setAtualizou(atu : string) {
+    this.atualizou = atu;
+  }
+
+}

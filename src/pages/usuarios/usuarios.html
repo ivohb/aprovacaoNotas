@@ -7,16 +7,18 @@
     <ion-title>Usuarios</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>  
-  
-    <ion-list>
-      <button ion-item *ngFor="let user of usuarios" (click)="showUser(user.id)">
-        <ion-thumbnail item-start>
+  <ion-fab top right edge>
+    <button navPush="UsuarioPage" ion-fab mini><ion-icon name="person-add"></ion-icon></button>
+  </ion-fab>
+
+  <ion-list>
+    <button ion-item *ngFor="let user of usuarios" (click)="showUser(user.id)">
+      <ion-thumbnail item-start>
           <img src="{{bucketUrl}}/user{{user.id}}.jpg">
-        </ion-thumbnail>
-        <h2> {{ user.nome }} </h2>
-      </button>
-    </ion-list> 
+      </ion-thumbnail>
+      <h2> {{ user.nome }} </h2>
+    </button>
+   </ion-list> 
 
 </ion-content>
