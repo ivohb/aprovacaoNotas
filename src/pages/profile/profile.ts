@@ -13,6 +13,7 @@ import { API_CONFIG } from '../../config/api.config';
 export class ProfilePage {
 
   usuario: UsuarioDto;
+  picture: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -27,6 +28,10 @@ export class ProfilePage {
     //redireciona para a página home
 
   ionViewDidLoad() {
+    this.loadData();
+  }
+
+  loadData() { 
     let localUser = this.storage.getLocalUser();
     if (localUser && localUser.codigo) {
       this.usuarioService.findByCodigo(localUser.codigo)
@@ -54,4 +59,19 @@ export class ProfilePage {
       
     });
   }
+
+  sendPicture() {
+    this.usuarioService.uploadPicture(this.picture)
+      .subscribe(response => {
+        this.picture = null;
+        this.getImageIfExists();
+      },
+      error => {
+      });
+  }
+
+  cancel() {
+    this.picture = null;
+  }
+  
 }

@@ -4,7 +4,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>profile</ion-title>
+    <ion-title>Profile</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -17,5 +17,17 @@
     <img class="circle" [src]="usuario?.imageUrl || 'assets/imgs/avatar-blank.png' ">
   </ion-avatar>
 
+  <ion-card>
+    <ion-card-header>
+      Enviar imagem de perfil
+    </ion-card-header>
+    <ion-item *ngIf="picture">
+      <img [src]="picture">
+    </ion-item>
+    <ion-item>
+      <button *ngIf="picture" ion-button outline block (click)="sendPicture()">Enviar imagem</button>
+      <button *ngIf="picture" ion-button outline block (click)="cancel()">Descartar imagem</button>
+    </ion-item>
+  </ion-card>  
 
 </ion-content>

@@ -13,6 +13,7 @@ import { AuthService } from '../services/auth.servece';
 import { StorageService } from '../services/storage.service';
 import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { MenuService } from '../services/domain/menu.service';
+import { ImageUtilService } from '../services/image-util.servece';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MenuService } from '../services/domain/menu.service';
     ErrorInterceptorProvider, //será executado antes do ErrorInterceptador 
     AuthService,
     StorageService,
-    MenuService
+    MenuService,
+    ImageUtilService
   ]
 })
 export class AppModule {

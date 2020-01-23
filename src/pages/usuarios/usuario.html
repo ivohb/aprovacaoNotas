@@ -7,18 +7,18 @@
 
 <ion-content padding>
   
-  <form [formGroup]="fg" >
+  <form [formGroup]="fg"  >
 
     <ion-item>
       <ion-label stacked>Id:</ion-label>
-      <ion-input disabled="true" formControlName="id" type="text"></ion-input>
+      <ion-input id="id" disabled="true" formControlName="id" type="text"></ion-input>
     </ion-item>
 
     <ion-item >
       <ion-label stacked>Código:</ion-label>
-      <ion-input disabled ="{{desabilita}}" formControlName="codigo" type="disabled"  ></ion-input>
+      <ion-input formControlName="codigo" type="disabled" disabled="{{desabilita}}" ></ion-input>
     </ion-item>
-
+    <p class="erro" *ngIf="fg.controls.codigo.dirty && fg.controls.codigo.errors"  margin-left>Valor inválido</p>
     <ion-item>
       <ion-label stacked>Nome:</ion-label>
       <ion-input formControlName="nome" type="text"></ion-input>
@@ -44,9 +44,18 @@
       </ion-select>
     </ion-item>
 
-    <button ion-button block (click)="save()" [disabled]="fg.invalid">Salvar</button>
-    <button ion-button block (click)="delete()" class="erro" hidden="{{hidden}}">Excluir</button>
+    <ion-item >
+      <ion-label stacked>Ativo:</ion-label>
+      <ion-input id="ativo" formControlName="ativo" type="text" disabled="true"></ion-input>
+    </ion-item>
 
-  </form>
+     <button id="salvar" ion-button block (click)="save()" 
+        class="salvar" [disabled]="fg.invalid">Salvar
+     </button>
+
+     <button id="excluir" *ngIf="excluir" ion-button block (click)="delete()"  
+        class="excluir">Excluir</button>
+
+    </form>
 
 </ion-content>

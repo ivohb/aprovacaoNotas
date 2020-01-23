@@ -6,5 +6,6 @@ export interface UsuarioDto {
     email : string;
     cpf : string;
     sexo : string;
+    ativo : string;
     imageUrl? : string; //(?) indica campo opcional - não vem do back end
 }

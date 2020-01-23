@@ -6,6 +6,7 @@ import { UsuarioDto } from "../../models/usuario.dto";
 import { API_CONFIG } from "../../config/api.config";
 import { StorageService } from "../storage.service";
 import { SenhaDto } from "../../models/senha.dto";
+import { ImageUtilService } from "../image-util.servece";
 
 //classe responsável pela comunicação com o back end
 
@@ -14,7 +15,8 @@ export class UsuarioService {
 
     constructor(
         public http: HttpClient,
-        public storage: StorageService) {
+        public storage: StorageService,
+        public imageUtilService: ImageUtilService) {
     }
 
     findById(id: string) : Observable<UsuarioDto> {
@@ -26,7 +28,12 @@ export class UsuarioService {
         //chaada do método get da API sem parâmetros
         return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuario`);
     }
-
+    
+    findPage(page : number, lines : number) {
+        console.log(page)
+        return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuario/page?pagina=${page}&linhas=${lines}`);
+    }
+    
     popup() : Observable<UsuarioDto[]> {
         //chaada do método get da API sem parâmetros
         return this.http.get<UsuarioDto[]>(`${API_CONFIG.apiUrl}/usuario/popup`);
@@ -86,4 +93,23 @@ export class UsuarioService {
         ); 
     }
 
+    //param: imaegem no formato base64
+    uploadPicture(picture) {
+        //converte imagem para blob
+        let pictureBlob = this.imageUtilService.dataUriToBlob(picture);
+        //ojeto que envia a imagem - vide form-data do postman
+        let formData : FormData = new FormData();
+        //definição do pârametro do back end, imagem e um nome qualquer,
+        //o qual não será utilizado
+        formData.set('file', pictureBlob, 'file.png');
+        //chamada o end point que recebe a imagem e envia para o S3-amazon
+        return this.http.post(
+            `${API_CONFIG.imgUrl}/usuario/picture`, 
+            formData,
+            { 
+                observe: 'response', 
+                responseType: 'text'
+            }
+        ); 
+    }
 }
