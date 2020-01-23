@@ -4,6 +4,7 @@ import { StorageService } from '../../services/storage.service';
 import { UsuarioDto } from '../../models/usuario.dto';
 import { UsuarioService } from '../../services/domain/usuario.service';
 import { API_CONFIG } from '../../config/api.config';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @IonicPage()
 @Component({
@@ -14,11 +15,13 @@ export class ProfilePage {
 
   usuario: UsuarioDto;
   picture: string;
+  cameraOn: boolean = false;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public storage: StorageService,
+    public camera: Camera,
     public usuarioService: UsuarioService) {
   }
 
@@ -74,4 +77,23 @@ export class ProfilePage {
     this.picture = null;
   }
   
+  getCameraPicture() {
+
+    this.cameraOn = true;
+
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+      this.picture = 'data:image/png;base64,' + imageData;
+      this.cameraOn = false;
+     }, (err) => {
+      this.cameraOn = false;
+     });
+  }
+   
 }
